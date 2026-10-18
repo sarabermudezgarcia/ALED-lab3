@@ -163,7 +163,16 @@ public class FASTAReader {
 	 */
 	public List<Integer> search(byte[] pattern) {
 		// TODO
-		return null;
+		List<Integer> indices = new ArrayList<Integer>();
+		for (int i = 0; i<this,content.length;i++) {
+			try {
+				if(this.compareImproved(pattern, i));
+				indices.add(i);
+			} catch(FASTAException e) {
+				break;
+			}
+		}
+		return indices;;
 	}
 
 	/**
