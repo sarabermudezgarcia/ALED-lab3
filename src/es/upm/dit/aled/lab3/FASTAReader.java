@@ -154,8 +154,16 @@ public class FASTAReader {
 	 * ones present in the indicated position.
 	 */
 	private int compareNumErrors(byte[] pattern, int position) throws FASTAException {
-		// TODO
-		return -1;
+		if (position + pattern.length > validBytes ) {
+			throw new FASTAException("Pattern goes beyond the end of the file.");
+		}
+		int numErrores = 0; 
+		for (int i = 0; i< pattern.length; i++) {
+			if(pattern[i] != content[position + i]) {
+				numErrores++;
+			}
+		}
+		return numErrores;
 	}
 
 	/**
@@ -178,7 +186,7 @@ public class FASTAReader {
 				break;
 			}
 		}
-		return indices;;
+		return indices;
 	}
 
 	/**
